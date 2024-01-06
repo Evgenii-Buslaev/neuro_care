@@ -1,4 +1,4 @@
-FROM node:19-alpine
+FROM node:20
 
 WORKDIR /app
 
@@ -11,6 +11,6 @@ RUN npm run build
 
 RUN npm install -g serve
 
-CMD ["serve", "-s", "build", "-p", "${PORT_CLIENT}"]
+CMD ["serve", "-s", "build", "-p", "${CLIENT_PORT}"]
 
-EXPOSE ${PORT_CLIENT}
+EXPOSE ${CLIENT_PORT}

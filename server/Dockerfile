@@ -1,4 +1,4 @@
-FROM node:19-alpine
+FROM node:20
 
 WORKDIR /app
 
@@ -10,4 +10,4 @@ COPY .. .
 
 CMD ["node", "index.js"]
 
-EXPOSE ${PORT_SERVER}
+EXPOSE ${SERVER_PORT}
