@@ -12,5 +12,5 @@ export const App: FC = () => {
             clearInterval(interval)
         }
     }, [])
-    return <div>{counter}</div>
+    return <div className='px-2 py-3 font-bold font-black opacity-50 text-red'>{counter}</div>
 }

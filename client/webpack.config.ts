@@ -36,7 +36,20 @@ export default (env: IEnvVariables) => {
             rules: [
                 {
                     test: /\.s[ac]ss$/i,
-                    use: [isDev ? 'style-loader' : MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+                    use: [
+                        isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+                        "css-loader",
+                        "sass-loader",
+                        "postcss-loader"
+                    ],
+                },
+                {
+                    test: /\.css$/i,
+                    use: [
+                        isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+                        "css-loader",
+                        "postcss-loader"
+                    ],
                 },
                 {
                     test: /\.tsx?$/,
