@@ -12,10 +12,11 @@ interface IEnvVariables {
 
 export default (env: IEnvVariables) => {
     const isDev = env.mode === 'development'
+
     const config: webpack.Configuration = {
         mode: env.mode ?? 'development',
         entry: {
-            neuroCare: path.resolve(__dirname, 'src', 'index.ts')
+            neuroCare: path.resolve(__dirname, 'src', 'index.tsx')
         },
         output: {
             path: path.resolve(__dirname, 'build'),
@@ -24,8 +25,8 @@ export default (env: IEnvVariables) => {
         },
         plugins: [
             new HtmlWebpackPlugin({ template: path.resolve(__dirname, 'public', 'index.html') }),
-            new webpack.ProgressPlugin()
-        ],
+            isDev && new webpack.ProgressPlugin(),
+        ].filter(Boolean),
         module: {
             rules: [
                 {
@@ -38,7 +39,7 @@ export default (env: IEnvVariables) => {
         resolve: {
             extensions: ['.tsx', '.ts', '.js'],
         },
-        devtool: isDev ? 'inline-source-map' : false,
+        devtool: isDev && 'inline-source-map',
         devServer: isDev ? {
             port: env.port ?? 3000,
             open: true,
