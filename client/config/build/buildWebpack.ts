@@ -7,11 +7,6 @@ import buildLoaders from "./loaders";
 import buildPlugins from "./plugins";
 import buildResolvers from "./resolvers";
 
-/* {
-            neuroCare: path.resolve(__dirname, 'src', 'index.tsx')
-        }
-        */
-
 export const buildWebpack = (options: BuildOptions): WebpackConfiguration => {
     const isDev = options.mode === 'development'
     return {
