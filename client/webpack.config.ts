@@ -1,19 +1,25 @@
-
-import webpack from 'webpack';
 import { WebpackConfiguration } from "webpack-dev-server";
 
 import { buildWebpack } from './config/build/buildWebpack';
+import { BuildPaths, TypeBuildMode } from './config/build/types';
+import path from 'path'
 
-type TypeMode = 'production' | 'development'
 
 interface IEnvVariables {
-    mode: TypeMode,
     port: number,
+    mode: TypeBuildMode,
 }
 
 export default (env: IEnvVariables) => {
-    const isDev = env.mode === 'development'
-
-    const config: WebpackConfiguration = buildWebpack()
+    const paths: BuildPaths = {
+        output: path.resolve(__dirname, 'build'),
+        entry: path.resolve(__dirname, 'src', 'index.tsx'),
+        html: path.resolve(__dirname, 'public', 'index.html')
+    }
+    const config: WebpackConfiguration = buildWebpack({
+        port: env.port ?? 3000,
+        mode: env.mode ?? 'development',
+        paths
+    })
     return config
 }

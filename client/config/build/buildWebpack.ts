@@ -1,26 +1,33 @@
+import path from 'path'
 import { WebpackConfiguration } from "webpack-dev-server";
+import { BuildOptions } from "./types";
+
 import buildDevServer from "./devServer";
-import { buildLoaders } from "./loaders";
+import buildLoaders from "./loaders";
 import buildPlugins from "./plugins";
 import buildResolvers from "./resolvers";
 
-export const buildWebpack = (): WebpackConfiguration => {
-    return {
-        mode: env.mode ?? 'development',
-        entry: {
+/* {
             neuroCare: path.resolve(__dirname, 'src', 'index.tsx')
-        },
+        }
+        */
+
+export const buildWebpack = (options: BuildOptions): WebpackConfiguration => {
+    const isDev = options.mode === 'development'
+    return {
+        mode: options.mode ?? 'development',
+        entry: options.paths.entry,
         output: {
-            path: path.resolve(__dirname, 'build'),
+            path: options.paths.output,
             filename: '[name].[contenthash].js',
             clean: true,
         },
-        plugins: buildPlugins(),
+        plugins: buildPlugins(options),
         module: {
-            rules: buildLoaders()
+            rules: buildLoaders(options)
         },
         resolve: buildResolvers(),
         devtool: isDev && 'inline-source-map',
-        devServer: isDev ? buildDevServer() : undefined,
+        devServer: isDev ? buildDevServer(options) : undefined,
     }
 }

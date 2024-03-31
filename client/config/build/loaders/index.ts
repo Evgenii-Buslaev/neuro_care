@@ -2,7 +2,7 @@ import { ModuleOptions } from "webpack";
 import { BuildOptions } from "../types"
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 
-export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
+export default function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
     const isDev = options.mode === 'development'
 
     const scssLoader = {
