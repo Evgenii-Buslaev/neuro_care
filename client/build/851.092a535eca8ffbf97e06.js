@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkclient=self.webpackChunkclient||[]).push([[851],{851:(e,n,c)=>{c.r(n),c.d(n,{Profile:()=>r,default:()=>t});var l=c(848),r=function(){return(0,l.jsx)("h1",{children:"Profile"})};const t=r}}]);

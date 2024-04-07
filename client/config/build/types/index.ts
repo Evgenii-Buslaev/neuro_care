@@ -7,5 +7,6 @@ export interface BuildPaths {
 export interface BuildOptions {
     port: number,
     paths: BuildPaths,
-    mode: TypeBuildMode
+    mode: TypeBuildMode,
+    analyser?: boolean,
 }
