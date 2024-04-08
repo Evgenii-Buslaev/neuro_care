@@ -1,7 +1,7 @@
 
 import './styles/index.css'
 import { createRoot } from 'react-dom/client'
-import { App } from './components/app/index'
+import { App } from '@/components/app/index'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { LazyAbout } from './pages/about/index.lazy'
 import { LazyProfile } from './pages/profile/index.lazy'
