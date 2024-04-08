@@ -20,7 +20,7 @@ export const App: FC = () => {
         <div style={{ width: 100, height: 100 }}>
             <img src={pngEx} alt='example'></img>
             <img src={jpgEx} alt='example'></img>
-            <Appstore />
+            <Appstore color={'red'} width={50} height={50} />
         </div>
         <Link to='/about'>about</Link>
         <Link to='/profile'>profile</Link>
