@@ -1,4 +1,4 @@
-import { Configuration } from 'webpack'
+import { Configuration, DefinePlugin } from 'webpack'
 import { BuildOptions } from "../types"
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
@@ -8,8 +8,13 @@ export default function buildPlugins(options: BuildOptions): Configuration['plug
     const isDev = options.mode === 'development'
     const isProd = options.mode === 'production'
     const hasAnalyser = Boolean(options.analyser)
+
     const plugins: Configuration['plugins'] = [
         new HtmlWebpackPlugin({ template: options.paths.html }),
+        new DefinePlugin({
+            __PLATFORM__: JSON.stringify(options.platform),
+            __ENV__: JSON.stringify(options.mode)
+        }),
     ]
 
     if (isDev) {
@@ -25,5 +30,6 @@ export default function buildPlugins(options: BuildOptions): Configuration['plug
     if (hasAnalyser) {
         plugins.push(new BundleAnalyzerPlugin())
     }
+
     return plugins
 }

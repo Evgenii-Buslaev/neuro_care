@@ -10,13 +10,15 @@ export const App: FC = () => {
 
     useEffect(() => {
         const interval = setInterval(() => {
-            setCounter(prev => prev + 1)
+            setCounter(prev => prev + '1')
         }, 1000)
         return () => {
             clearInterval(interval)
         }
     }, [])
+
     return <>
+        <h1>PLATFORM: {__PLATFORM__}</h1>
         <div style={{ width: 100, height: 100 }}>
             <img src={pngEx} alt='example'></img>
             <img src={jpgEx} alt='example'></img>
