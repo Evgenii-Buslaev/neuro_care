@@ -16,7 +16,12 @@ export const App: FC = () => {
             clearInterval(interval)
         }
     }, [])
+
+    if (__PLATFORM__ === 'desktop') {
+        return <div>desktopdddd</div>
+    }
     return <>
+        <h1>PLATFORM: {__PLATFORM__}</h1>
         <div style={{ width: 100, height: 100 }}>
             <img src={pngEx} alt='example'></img>
             <img src={jpgEx} alt='example'></img>
