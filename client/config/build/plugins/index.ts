@@ -8,6 +8,7 @@ export default function buildPlugins(options: BuildOptions): Configuration['plug
     const isDev = options.mode === 'development'
     const isProd = options.mode === 'production'
     const hasAnalyser = Boolean(options.analyser)
+
     const plugins: Configuration['plugins'] = [
         new HtmlWebpackPlugin({ template: options.paths.html }),
         new DefinePlugin({
@@ -29,5 +30,6 @@ export default function buildPlugins(options: BuildOptions): Configuration['plug
     if (hasAnalyser) {
         plugins.push(new BundleAnalyzerPlugin())
     }
+
     return plugins
 }

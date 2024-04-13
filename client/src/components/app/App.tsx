@@ -10,16 +10,13 @@ export const App: FC = () => {
 
     useEffect(() => {
         const interval = setInterval(() => {
-            setCounter(prev => prev + 1)
+            setCounter(prev => prev + '1')
         }, 1000)
         return () => {
             clearInterval(interval)
         }
     }, [])
 
-    if (__PLATFORM__ === 'desktop') {
-        return <div>desktopdddd</div>
-    }
     return <>
         <h1>PLATFORM: {__PLATFORM__}</h1>
         <div style={{ width: 100, height: 100 }}>

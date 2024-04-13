@@ -1,21 +1,15 @@
-import { ModuleOptions } from "webpack";
-import { BuildOptions } from "../types"
-import MiniCssExtractPlugin from 'mini-css-extract-plugin'
-
-export default function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
-    const isDev = options.mode === 'development'
-
-    const scssLoaderWithModules = {
-
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+export default function buildLoaders(options) {
+    var isDev = options.mode === 'development';
+    var scssLoaderWithModules = {
         loader: "css-loader",
         options: {
             modules: {
                 localIdentName: isDev ? "[path][name]__[local]--[hash:base64:5]" : '[hash:base64:8]',
             }
         },
-    }
-
-    const scssLoader = {
+    };
+    var scssLoader = {
         test: /\.s[ac]ss$/i,
         use: [
             isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
@@ -23,18 +17,16 @@ export default function buildLoaders(options: BuildOptions): ModuleOptions['rule
             "sass-loader",
             "postcss-loader"
         ],
-    }
-
-    const cssLoader = {
+    };
+    var cssLoader = {
         test: /\.css$/i,
         use: [
             isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
             "css-loader",
             "postcss-loader"
         ],
-    }
-
-    const tsLoader = {
+    };
+    var tsLoader = {
         test: /\.tsx?$/,
         use: [
             {
@@ -45,14 +37,12 @@ export default function buildLoaders(options: BuildOptions): ModuleOptions['rule
             }
         ],
         exclude: /node_modules/,
-    }
-
-    const assetsLoader = {
+    };
+    var assetsLoader = {
         test: /\.(png|jpg|jpeg|gif)$/i,
         type: 'asset/resource',
-    }
-
-    const svgLoader = {
+    };
+    var svgLoader = {
         test: /\.svg$/,
         use: [
             {
@@ -72,13 +62,12 @@ export default function buildLoaders(options: BuildOptions): ModuleOptions['rule
                 },
             },
         ],
-    }
-
+    };
     return [
         scssLoader,
         cssLoader,
         tsLoader,
         assetsLoader,
         svgLoader
-    ]
+    ];
 }
