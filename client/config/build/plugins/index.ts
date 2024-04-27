@@ -1,9 +1,12 @@
+import webpack from 'webpack'
 import { Configuration, DefinePlugin } from 'webpack'
 import { BuildOptions } from "../types"
+
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
+import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin'
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
-import webpack from 'webpack'
+
 export default function buildPlugins(options: BuildOptions): Configuration['plugins'] {
     const isDev = options.mode === 'development'
     const isProd = options.mode === 'production'
@@ -19,6 +22,7 @@ export default function buildPlugins(options: BuildOptions): Configuration['plug
 
     if (isDev) {
         plugins.push(new webpack.ProgressPlugin())
+        plugins.push(new ReactRefreshWebpackPlugin())
     }
 
     if (isProd) {
