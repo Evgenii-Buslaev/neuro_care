@@ -10,7 +10,7 @@ export const App: FC = () => {
 
     useEffect(() => {
         const interval = setInterval(() => {
-            setCounter(prev => prev + '1')
+            setCounter(prev => prev + 1)
         }, 1000)
         return () => {
             clearInterval(interval)
